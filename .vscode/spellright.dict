@@ -1,0 +1,10 @@
+Venafi
+apiadmin
+lb
+ .ps1 
+DscResourcesToExport
+Cmdlets
+hashtable
+ .ps1xml 
+cmdlets
+interwebs

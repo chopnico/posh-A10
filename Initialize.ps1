@@ -6,6 +6,5 @@ ForEach($class in $classes){
 }
 
 # Set some environment variables (global)
-$env:A10DriverLogLocation = "C:\Venafi Driver Logs\A10"
 $env:A10ApiVersion        = "V2.1"
 $env:A10ApiFormat         = "json"

@@ -17,32 +17,28 @@ function New-A10Session {
             Mandatory = $true,
             ValueFromPipeLine = $false,
             ValueFromPipeLineByPropertyName = $false)]
-        [String]$Username,
+        [PSCredential]$Credential,
 
         [Parameter(
             Position = 1,
             Mandatory = $true,
             ValueFromPipeLine = $false,
             ValueFromPipeLineByPropertyName = $false)]
-        [String]$Password,
+        [String]$ApplianceFQDN,
 
         [Parameter(
             Position = 2,
             Mandatory = $true,
             ValueFromPipeLine = $false,
             ValueFromPipeLineByPropertyName = $false)]
-        [String]$ApplianceFQDN,
-
-        [Parameter(
-            Position = 3,
-            Mandatory = $true,
-            ValueFromPipeLine = $false,
-            ValueFromPipeLineByPropertyName = $false)]
         [String]$Partition
     )
 
+    $username = $Credential.GetNetworkCredential().UserName
+    $password = $Credential.GetNetworkCredential().Password
+
     $response = $null
-    $uri      = "https://$($ApplianceFQDN)/services/rest/$($env:A10ApiVersion)/?method=authenticate&format=$($Env:A10ApiFormat)&username=$($Username)&password=$($Password)"
+    $uri      = "https://$($ApplianceFQDN)/services/rest/$($env:A10ApiVersion)/?method=authenticate&format=$($Env:A10ApiFormat)&username=$($username)&password=$($password)"
 
     try {
         Write-Verbose "Attempting to authenticate..."
